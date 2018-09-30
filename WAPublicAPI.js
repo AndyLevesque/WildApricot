@@ -1,3 +1,4 @@
+/*This script is a modified version of the original */
 // this script requiresString jQuery
 
 
