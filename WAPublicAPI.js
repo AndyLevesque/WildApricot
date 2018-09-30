@@ -67,7 +67,7 @@ function WApublicApi(clientId) {
             * use this url to GET, PUT, DELETE contact
             * @contactId {Number}
             */
-
+            console.log("API Call is: " + this.account() + '/contacts' + contactID);
             return this.account() + '/contacts/' + contactId;
         },
         contacts: function (params) {
