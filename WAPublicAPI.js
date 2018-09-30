@@ -53,8 +53,8 @@ function WApublicApi(clientId) {
 
     this.apiUrls = {
         accountId: -1,
-        baseApiUrl: '/sys/api',
-        account: function () { return this.baseApiUrl + '/v2/accounts/' + this.accountId; },
+        baseApiUrl: '/sys/api/publicview',
+        account: function () { return this.baseApiUrl + '/v1/accounts/' + this.accountId; },
         me: function () {
             /**
             * contacts/me api call. Returns basic information on current logged in user
