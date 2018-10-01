@@ -61,6 +61,13 @@ function WApublicApi(clientId) {
             */
             return this.account() + '/contacts/me';
         },
+        meDetails: function () {
+            /**
+            * contacts/me api call. Returns basic information on current logged in user
+            */
+           params = "includeDetails=true" || {}
+            return this.account() + '/contacts/me' + "?" + $.param(params);
+        },
         contact: function (contactId) {
             /**
             * specific contact api call  (https://help.wildapricot.com/display/DOC/Contacts+API+V2+call#ContactsAPIV2call-Retrievinginformationforaspecificcontact)
