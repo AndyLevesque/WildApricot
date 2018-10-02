@@ -1,4 +1,7 @@
-/*This script is a modified version of the original */
+/*This script is a modified version of the original by Wild Apricot found here: https://rawgit.com/WildApricot/ApiSamples/master/JavaScript/waPublicApi.js
+    The changes involve changing the API to the publicview api v1 for the contacts/me?includeDetails=true call
+    Note that the change to the publicview api may have broken other calls found in this js file (we are only using this for contacts/me at the moment)
+*/
 // this script requiresString jQuery
 
 
@@ -53,8 +56,8 @@ function WApublicApi(clientId) {
 
     this.apiUrls = {
         accountId: -1,
-        baseApiUrl: '/sys/api/publicview',
-        account: function () { return this.baseApiUrl + '/v1/accounts/' + this.accountId; },
+        baseApiUrl: '/sys/api/publicview', //Added publicview for non-admin use
+        account: function () { return this.baseApiUrl + '/v1/accounts/' + this.accountId; }, //Switched from v2 to v1 for publicview api
         me: function () {
             /**
             * contacts/me api call. Returns basic information on current logged in user
@@ -63,7 +66,10 @@ function WApublicApi(clientId) {
         },
         meDetails: function () {
             /**
-            * contacts/me api call. Returns basic information on current logged in user
+            * contacts/me with details api call and is the only method of a non-admin getting details on themselves. 
+            * Returns basic and detailed information. 
+            * Detailed information is embedded in an array of FieldValues as per accounts/{accountId}/contacts/{contactId} documentation found here:
+            * https://app.swaggerhub.com/apis/WildApricot/wild-apricot_api_for_non_administrative_access/1.0.0#/Contacts/get_accounts__accountId__contacts__contactId_
             */
             return this.account() + '/contacts/me?includeDetails=true';
         },
@@ -73,7 +79,6 @@ function WApublicApi(clientId) {
             * use this url to GET, PUT, DELETE contact
             * @contactId {Number}
             */
-            console.log("API Call is: " + this.account() + '/contacts' + contactID);
             return this.account() + '/contacts/' + contactId;
         },
         contacts: function (params) {
