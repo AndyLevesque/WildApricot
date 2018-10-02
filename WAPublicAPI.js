@@ -65,7 +65,6 @@ function WApublicApi(clientId) {
             /**
             * contacts/me api call. Returns basic information on current logged in user
             */
-           params = "includeDetails=true" || {}
             return this.account() + '/contacts/me?includeDetails=true';
         },
         contact: function (contactId) {
